@@ -7,19 +7,29 @@ const hombres = ['Santa', 'Intel']
 
 server.use((req, res, next) =>{
     console.time('Request')
-    console.log(`Method: ${req.method}; URL: ${req.url}`)
+    console.log(`Method: ${req.method}\nURL: ${req.url}`)
 
     next();
     console.log('Finish')
     console.timeEnd('Request')
 })
 
+function checkHombreExists(req, res, next){
+    if (!req.body.name){
+        return res.status(400).json({error:'hombre name is required'})
+    }
+
+    return next()
+}
+
 function checkUserInArray(req, res, next){
     const hombre = hombres[req.params.index]
     if (!hombre){
         return res.status(400).json({error: 'hombre does not exist'})
     }
+
     req.hombre = hombre
+
     return next()
 }
 
@@ -31,14 +41,14 @@ server.get('/hombres/:index', checkUserInArray, (req, res) =>{
     return res.json(req.user)
 })
 
-server.post('/hombres', (req, res) =>{
+server.post('/hombres', checkHombreExists, (req, res) =>{
     const {name} = req.body
     hombres.push(name)
 
     return res.json(hombres)
 })
 
-server.put('/hombres/:index', (req, res) => {
+server.put('/hombres/:index', checkUserInArray, checkHombreExists, (req, res) => {
     const {index} = req.params
     const {name} = req.body
 
