@@ -1,4 +1,5 @@
 const express = require('express')
+
 const server = express()
 
 server.use(express.json())
@@ -10,6 +11,7 @@ server.use((req, res, next) =>{
     console.log(`Method: ${req.method}\nURL: ${req.url}`)
 
     next();
+
     console.log('Finish')
     console.timeEnd('Request')
 })
@@ -38,7 +40,7 @@ server.get('/hombres', (req, res) =>{
 })
 
 server.get('/hombres/:index', checkUserInArray, (req, res) =>{
-    return res.json(req.user)
+    return res.json(req.hombre)
 })
 
 server.post('/hombres', checkHombreExists, (req, res) =>{
