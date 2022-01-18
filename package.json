@@ -1,0 +1,11 @@
+{
+  "name": "basicNodeCrud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thalesouza/basicNodeCrud.git",
+  "author": "Thales Souza <hey@thales.live>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
