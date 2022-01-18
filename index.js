@@ -3,6 +3,6 @@ const server = express()
 
 server.listen(3000)
 
-server.get('/', (req, res) =>{
+server.get('/hombres', (req, res) =>{
     return res.json({message: 'Hi world'})
 })

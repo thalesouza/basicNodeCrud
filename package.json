@@ -5,7 +5,13 @@
   "repository": "https://github.com/thalesouza/basicNodeCrud.git",
   "author": "Thales Souza <hey@thales.live>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
