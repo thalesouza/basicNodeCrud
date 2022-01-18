@@ -1,9 +1,18 @@
 const express = require('express')
 const server = express()
 
+server.use(express.json())
+
 const hombres = ['Santa', 'Intel']
 
-server.use(express.json())
+server.use((req, res, next) =>{
+    console.time('Request')
+    console.log(`Method: ${req.method}; URL: ${req.url}`)
+
+    next();
+    console.log('Finish')
+    console.timeEnd('Request')
+})
 
 function checkUserInArray(req, res, next){
     const hombre = hombres[req.params.index]
